@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  go:
+    build: .
+    ports: 
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: .
+        target: /src/app
+    tty: true
