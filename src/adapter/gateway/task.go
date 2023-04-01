@@ -3,7 +3,7 @@ package gateway
 import (
 	"database/sql"
 
-	"github.com/tatsuya06068/go-tdd/src/domain/model"
+	"github.com/tatsuya06068/go-tdd/src/domain/entity"
 	"github.com/tatsuya06068/go-tdd/src/domain/repository"
 )
 
@@ -17,11 +17,11 @@ func NewTaskRepository(conn *sql.DB) repository.TaskRepository {
 	}
 }
 
-func (t *TaskRepository) GetTask() (*model.Task, error) {
+func (t *TaskRepository) GetTask() (*entity.Task, error) {
 	conn := t.conn
 	row := conn.QueryRow("SELECT * FROM 'task' ")
-	task := model.Task{}
-	err := row.Scan(&task.ID, &task.TaskName, &task.Status)
+	task := entity.Task{}
+	err := row.Scan(&task.TastId, &task.TaskName)
 	if err != nil {
 		return nil, err
 	}
